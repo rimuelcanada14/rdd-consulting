@@ -601,16 +601,21 @@ html {
 
 .eric-content {
   display: grid;
-  grid-template-columns: 400px 1fr;
-  gap: 4rem;
+  /* grid-template-columns: 400px 1fr; */
+  gap: 2rem;
   align-items: flex-start;
 }
 
 .eric-image {
-  width: 82%;
+  width: 250px;
   height: auto;
   object-fit: cover;
   display: block;
+}
+
+.eric-image-wrapper {
+  display: flex;
+  justify-content: center;
 }
 
 .eric-text {
@@ -1302,6 +1307,10 @@ html {
   }
 
   .eric-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     grid-template-columns: 1fr;
     gap: 3rem;
   }

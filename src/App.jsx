@@ -50,22 +50,38 @@ const handleFormChange = (e) => {
 }
 
 
-const handleFormSubmit = (e) => {
-  e.preventDefault()
-  console.log('Form submitted:', formData)
-  // Add your form submission logic here
-  alert('Thank you for your inquiry! We will get back to you soon.')
-  // Reset form
-  setFormData({
-    fullName: '',
-    email: '',
-    contactNumber: '',
-    preferredContact: '',
-    inquiry: '',
-    message: '',
-    receiveUpdates: false
-  })
-}
+const handleFormSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const response = await fetch('/.netlify/functions/sendInquiryEmail', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+      alert('Thank you for your inquiry! We will get back to you soon.');
+      setFormData({
+        fullName: '',
+        email: '',
+        contactNumber: '',
+        preferredContact: '',
+        inquiry: '',
+        message: '',
+        receiveUpdates: false,
+      });
+    } else {
+      alert('Failed to send inquiry. Please try again later.');
+    }
+  } catch (error) {
+    console.error('Error sending inquiry:', error);
+    alert('An error occurred. Please try again later.');
+  }
+};
+
   
   
 
@@ -442,8 +458,6 @@ const scrollRight = () => {
               {/* Meet Eric Section */}
             <section className="eric-section">
               <div className="eric-container">
-                
-                
                 <div className="eric-content">
                   <div className="eric-image-wrapper">
                     <img 
@@ -827,14 +841,19 @@ const scrollRight = () => {
 
               <div className="form-group inquiry-group">
                 <label htmlFor="inquiry" className="form-label">Inquiry</label>
-                <input
-                  type="text"
+                <select
                   id="inquiry"
                   name="inquiry"
                   value={formData.inquiry}
                   onChange={handleFormChange}
                   className="form-input"
-                />
+                >
+                  <option value="">Select inquiry type</option>
+                  <option value="Consulting">Consulting</option>
+                  <option value="Training">Training</option>
+                  <option value="Management/HR Inquiry">Management/HR Inquiry</option>
+                  <option value="Research">Research</option>
+                </select>
               </div>
 
               <div className="form-group">
@@ -877,14 +896,19 @@ const scrollRight = () => {
 
               <div className="form-group">
                 <label htmlFor="preferredContact" className="form-label">Preferred Contact Method</label>
-                <input
-                  type="text"
+                <select
                   id="preferredContact"
                   name="preferredContact"
                   value={formData.preferredContact}
                   onChange={handleFormChange}
                   className="form-input"
-                />
+                >
+                  <option value="">Select a contact method</option>
+                  <option value="Email">Email</option>
+                  <option value="SMS">Text/SMS</option>
+                  <option value="WhatsApp">WhatsApp</option>
+                  <option value="Viber">Viber</option>
+                </select>
               </div>
 
               <div className="checkbox-group">
@@ -971,7 +995,7 @@ const scrollRight = () => {
         <div className="contact-row">
             <div className="contact-item">
                 <a 
-                    href="https://www.linkedin.com/company/riego-de-dios-consulting/?originalSubdomain=ph" 
+                    href="https://www.linkedin.com/company/riego-de-dios-consulting/" 
                     target="_blank" 
                     rel="noopener noreferrer"
                 >
