@@ -642,7 +642,7 @@ const scrollRight = () => {
                         }}
                       />
                   </div>
-                  <h2 className="capability-title">Training Capability</h2>
+                  <h2 className="capability-title-d">Training Capability</h2>
                 </div>
                 
                 <div className="services-list">
