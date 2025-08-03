@@ -293,7 +293,7 @@ html {
 }
 
 .company-description {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   line-height: 1.6;
   color: #004AAD;
   margin: 0;
@@ -329,7 +329,7 @@ html {
 }
 
 .service-text {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   line-height: 1.6;
   color: #004AAD;
   margin: 0;
@@ -337,7 +337,7 @@ html {
   max-width: 500px;
 }
 .service-text-right {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   line-height: 1.6;
   color: #004AAD;
   margin: 0;
@@ -356,11 +356,11 @@ html {
 
 .partnerships-container {
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 3rem;
 }
 
 .partnerships-title {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 800;
   color: #004AAD;
   text-align: center;
@@ -372,46 +372,57 @@ html {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 1rem;
 }
 
 .nav-arrow {
-  background: white;
-  border: 2px solid #004AAD;
-  border-radius: 8px;
-  width: 50px;
-  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   color: #004AAD;
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-  z-index: 10;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  user-select: none;
+  background-color: transparent;
+  border: none;
+  padding: 0;
   -webkit-tap-highlight-color: transparent;
+  outline: none !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
-.nav-arrow:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none !important;
+
+
+.marquee-container {
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+  position: relative;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  cursor: grab;
+  border-radius: 8px;
 }
 
-.nav-arrow:not(:disabled):hover,
-.nav-arrow:not(:disabled):focus {
-  background: #004AAD;
-  color: white;
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(0, 74, 173, 0.3);
-  outline: none;
+.marquee-container::-webkit-scrollbar {
+  display: none;
 }
 
-.nav-arrow:not(:disabled):active {
-  transform: scale(0.98);
-  transition: transform 0.1s ease;
+.marquee-container:active {
+  cursor: grabbing;
+}
+
+.marquee-content {
+  display: flex;
+  gap: 1rem;
+  width: fit-content;
+  animation: marquee-infinite 120s linear infinite;
+  will-change: transform;
+  padding: 1rem 0.5rem;
+}
+
+.marquee-content.paused {
+  animation-play-state: paused;
 }
 
 /* About Section */
@@ -467,18 +478,18 @@ html {
 .about-right {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .about-subtitle {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 700;
   color: #FFFFFF;
   margin: 0;
 }
 
 .about-text {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   line-height: 1.6;
   color: #FFFFFF;
   margin: 0;
@@ -504,11 +515,11 @@ html {
 }
 
 .values-title {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   font-weight: 700;
   color: #FFFFFF;
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   margin-top: 0;
 }
 
@@ -559,7 +570,7 @@ html {
 }
 
 .value-description {
-  font-size: 1rem;
+  font-size: 1.15rem;
   line-height: 1.6;
   color: #004AAD;
   margin: 0;
@@ -581,7 +592,7 @@ html {
 }
 
 .eric-title {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   font-weight: 700;
   color: #FFFFFF;
   text-align: left;
@@ -617,21 +628,6 @@ html {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Touch device optimizations */
-@media (hover: none) and (pointer: coarse) {
-  .nav-arrow:not(:disabled):hover {
-    background: white;
-    color: #004AAD;
-    transform: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .nav-arrow:not(:disabled):active {
-    background: #004AAD;
-    color: white;
-    transform: scale(1.02);
-  }
-}
 
 .marquee-container {
   flex: 1;
@@ -694,7 +690,7 @@ html {
 
 /* Services Section */
 .services-section {
-  padding: 4rem 0;
+  padding: 2rem 0;
   width: 100vw;
   margin-left: calc(-50vw + 50%);
 }
@@ -757,7 +753,7 @@ html {
 }
 
 .capability-title {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 700;
   color: #004AAD;
   margin: 0;
@@ -838,7 +834,7 @@ html {
 .dropdown-list li {
   padding: 0.5rem 0;
   border-bottom: 1px solid #e5e5e5;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   line-height: 1.5;
 }
 
@@ -904,7 +900,7 @@ html {
 }
 
 .form-label {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 500;
   color: #FFFFFF;
   margin-bottom: 0.25rem;
@@ -913,8 +909,9 @@ html {
 .form-input,
 .form-textarea {
   padding: .6rem;
+  padding-left: 1rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 15px;
   font-size: 1rem;
   font-family: 'Poppins', sans-serif;
   background-color: #FFFFFF;
@@ -1027,43 +1024,52 @@ html {
 }
 
 .footer-title {
-  font-size: 1.8rem;
-  font-weight: 600;
+  font-size: 2.2rem;
+  font-weight: 800;
   color: #FFFFFF;
   margin: 0;
   margin-bottom: 1rem;
 }
 
 .contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
 
-.contact-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-}
+        .contact-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
 
-.contact-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  color: #FFFFFF;
-  font-size: 1rem;
-  font-weight: 400;
-}
+        .contact-item a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #374151;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
 
-.contact-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  color: #FFFFFF;
-  flex-shrink: 0;
-}
+        .contact-item a:hover {
+            color: #2563eb;
+        }
+
+        .contact-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #FFFFFF;
+            flex-shrink: 0;
+        }
+
+        .contact-des {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
 
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.2);
@@ -1153,6 +1159,11 @@ html {
     width: 95%;
   }
 
+  .partnerships-container {
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
   .service-item {
     gap: 1rem;
     flex-direction: column;
@@ -1172,22 +1183,8 @@ html {
   }
 
   .partnerships-title {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     margin-bottom: 2rem;
-  }
-
-  .marquee-wrapper {
-    gap: 0.5rem;
-  }
-
-  .nav-arrow {
-    width: 40px;
-    height: 40px;
-  }
-
-  .nav-arrow svg {
-    width: 18px;
-    height: 18px;
   }
 
   .marquee-content {
@@ -1242,7 +1239,7 @@ html {
 }
 
   .about-subtitle {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 
   .about-text {
@@ -1257,7 +1254,7 @@ html {
   }
   .values-title {
     font-size: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 
   .values-grid {
@@ -1287,7 +1284,7 @@ html {
   }
 
   .value-description {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
   }
 
   /* Eric Section Mobile Styles */
@@ -1300,7 +1297,7 @@ html {
   }
 
   .eric-title {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     margin-bottom: 1.4rem;
   }
 
@@ -1323,13 +1320,13 @@ html {
   }
 
   .eric-description {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     line-height: 1.8;
     text-align: left;
   }
 
     .services-section {
-    padding: 3rem 0;
+    padding: 2rem 0;
   }
 
   .services-container {
@@ -1370,8 +1367,8 @@ html {
   }
 
   .dropdown-header {
-    padding: 1rem;
-    font-size: 0.9rem;
+    padding: 1.2rem;
+    font-size: 1rem
   }
 
   .dropdown-list {
@@ -1379,7 +1376,7 @@ html {
   }
 
   .dropdown-list li {
-    font-size: 0.85rem;
+    font-size: 1rem;
   }
 
   .contact-section {
@@ -1434,6 +1431,7 @@ html {
   .form-input,
   .form-textarea {
     padding: 0.6rem;
+    padding-left: .8rem;
   }
 
   .checkbox-label {
@@ -1506,12 +1504,17 @@ html {
 
   .footer-content {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 3.5rem;
     text-align: center;
   }
 
   .footer-left {
     justify-content: center;
+    order: 2;
+  }
+
+  .footer-right {
+    order: 1;
   }
 
   .footer-logo-img {
@@ -1519,7 +1522,7 @@ html {
   }
 
   .footer-title {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     text-align: left;
   }
 
@@ -1530,7 +1533,7 @@ html {
 
   .contact-item {
     justify-content: le;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
   }
 
   .footer-bottom {
