@@ -771,7 +771,7 @@ html {
 }
 
 .service-dropdown {
-  background-color: #004AAD;
+  background: linear-gradient(to bottom, #004AAD, #003d9a);
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
