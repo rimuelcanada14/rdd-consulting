@@ -25,7 +25,7 @@ export async function handler(event, context) {
       };
     }
 
-    const transporter = nodemailer.createTransporter({
+    const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: 587,
       secure: false,
