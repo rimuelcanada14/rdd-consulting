@@ -58,9 +58,19 @@ export async function handler(event, context) {
               <td style="padding: 8px; border-bottom: 1px solid #ddd;">${contactNumber || 'N/A'}</td>
             </tr>
             <tr>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd; font-weight: bold;">Preferred Contact Method:</td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${preferredContact || 'N/A'}</td>
+            </tr>
+            <tr>
               <td style="padding: 8px; border-bottom: 1px solid #ddd; font-weight: bold; vertical-align: top;">Message:</td>
               <td style="padding: 8px; border-bottom: 1px solid #ddd;">${message}</td>
             </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd; font-weight: bold; vertical-align: top;">Receive Updates:</td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${receiveUpdates || 'N/A'}</td>
+            </tr>
+
+
           </table>
           
           <p style="margin-top: 20px; color: #555;">Please assign this inquiry to the appropriate team member for follow-up.</p>
@@ -72,7 +82,9 @@ Inquiry Details:
 Name: ${fullName}
 Email: ${email}
 Phone Number: ${contactNumber || 'N/A'}
+Preferred Contact Method: ${preferredContact || 'N/A'}
 Message: ${message}
+Receive Updates: ${receiveUpdates}
 
 Please assign this inquiry to the appropriate team member for follow-up.`,
     };
@@ -89,26 +101,32 @@ Please assign this inquiry to the appropriate team member for follow-up.`,
           
           <h3 style="color: #2c3e50; margin-top: 25px; border-bottom: 2px solid #3498db; padding-bottom: 5px;">For your reference, here are the details you submitted:</h3>
           
-          <div style="background-color: #f8f9fa; padding: 20px; border-left: 4px solid #3498db; margin: 20px 0;">
-            <table style="width: 100%; border-collapse: collapse;">
-              <tr>
-                <td style="padding: 8px 0; font-weight: bold; color: #2c3e50; width: 120px;">Name:</td>
-                <td style="padding: 8px 0;">${fullName}</td>
-              </tr>
-              <tr>
-                <td style="padding: 8px 0; font-weight: bold; color: #2c3e50;">Email:</td>
-                <td style="padding: 8px 0;">${email}</td>
-              </tr>
-              <tr>
-                <td style="padding: 8px 0; font-weight: bold; color: #2c3e50;">Phone Number:</td>
-                <td style="padding: 8px 0;">${contactNumber || 'N/A'}</td>
-              </tr>
-              <tr>
-                <td style="padding: 8px 0; font-weight: bold; color: #2c3e50; vertical-align: top;">Message:</td>
-                <td style="padding: 8px 0; line-height: 1.5;">${message}</td>
-              </tr>
-            </table>
-          </div>
+          
+          <table style="border-collapse: collapse; width: 100%; margin: 15px 0;">
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd; font-weight: bold; width: 120px;">Name:</td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${fullName}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd; font-weight: bold;">Email:</td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${email}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd; font-weight: bold;">Phone Number:</td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${contactNumber || 'N/A'}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd; font-weight: bold;">Preferred Contact Method:</td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${preferredContact || 'N/A'}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd; font-weight: bold; vertical-align: top;">Message:</td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${message}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd; font-weight: bold; vertical-align: top;">Receive Updates:</td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${receiveUpdates || 'N/A'}</td>
+          </table>
           
           <p style="margin-top: 25px;">We appreciate your interest in our services.</p>
           
@@ -130,13 +148,14 @@ For your reference, here are the details you submitted:
 Name: ${fullName}
 Email: ${email}
 Phone Number: ${contactNumber || 'N/A'}
+Preferred Contact Method: ${preferredContact || 'N/A'}
 Message: ${message}
-
+Receive Updates: ${receiveUpdates}
 We appreciate your interest in our services.
 
 Best regards,
 The Riego de Dios Consulting Team
-Email: Info@riegodedios.com
+Email: info@riegodedios.com
 Phone: 09178790029`,
     };
 
