@@ -25,7 +25,14 @@ export async function handler(event, context) {
       };
     }
 
-    const transporter = nodemailer.createTransport({
+    // Helper function to convert boolean to Yes/No
+    const formatYesNo = (value) => {
+      if (value === true) return 'Yes';
+      if (value === false) return 'No';
+      return 'N/A';
+    };
+
+    const transporter = nodemailer.createTransporter({
       host: process.env.SMTP_HOST,
       port: 587,
       secure: false,
@@ -59,7 +66,7 @@ export async function handler(event, context) {
             </tr>
             <tr>
               <td style="padding: 8px; border-bottom: 1px solid #ddd; font-weight: bold;">Preferred Contact Method:</td>
-              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${preferredContact || 'N/A'}</td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${formatYesNo(preferredContact)}</td>
             </tr>
             <tr>
               <td style="padding: 8px; border-bottom: 1px solid #ddd; font-weight: bold; vertical-align: top;">Message:</td>
@@ -67,10 +74,8 @@ export async function handler(event, context) {
             </tr>
             <tr>
               <td style="padding: 8px; border-bottom: 1px solid #ddd; font-weight: bold; vertical-align: top;">Receive Updates:</td>
-              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${receiveUpdates || 'N/A'}</td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${formatYesNo(receiveUpdates)}</td>
             </tr>
-
-
           </table>
           
           <p style="margin-top: 20px; color: #555;">Please assign this inquiry to the appropriate team member for follow-up.</p>
@@ -82,9 +87,9 @@ Inquiry Details:
 Name: ${fullName}
 Email: ${email}
 Phone Number: ${contactNumber || 'N/A'}
-Preferred Contact Method: ${preferredContact || 'N/A'}
+Preferred Contact Method: ${formatYesNo(preferredContact)}
 Message: ${message}
-Receive Updates: ${receiveUpdates}
+Receive Updates: ${formatYesNo(receiveUpdates)}
 
 Please assign this inquiry to the appropriate team member for follow-up.`,
     };
@@ -101,7 +106,6 @@ Please assign this inquiry to the appropriate team member for follow-up.`,
           
           <h3 style="color: #2c3e50; margin-top: 25px; border-bottom: 2px solid #3498db; padding-bottom: 5px;">For your reference, here are the details you submitted:</h3>
           
-          
           <table style="border-collapse: collapse; width: 100%; margin: 15px 0;">
             <tr>
               <td style="padding: 8px; border-bottom: 1px solid #ddd; font-weight: bold; width: 120px;">Name:</td>
@@ -117,7 +121,7 @@ Please assign this inquiry to the appropriate team member for follow-up.`,
             </tr>
             <tr>
               <td style="padding: 8px; border-bottom: 1px solid #ddd; font-weight: bold;">Preferred Contact Method:</td>
-              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${preferredContact || 'N/A'}</td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${formatYesNo(preferredContact)}</td>
             </tr>
             <tr>
               <td style="padding: 8px; border-bottom: 1px solid #ddd; font-weight: bold; vertical-align: top;">Message:</td>
@@ -125,7 +129,8 @@ Please assign this inquiry to the appropriate team member for follow-up.`,
             </tr>
             <tr>
               <td style="padding: 8px; border-bottom: 1px solid #ddd; font-weight: bold; vertical-align: top;">Receive Updates:</td>
-              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${receiveUpdates || 'N/A'}</td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${formatYesNo(receiveUpdates)}</td>
+            </tr>
           </table>
           
           <p style="margin-top: 25px;">We appreciate your interest in our services.</p>
@@ -148,9 +153,10 @@ For your reference, here are the details you submitted:
 Name: ${fullName}
 Email: ${email}
 Phone Number: ${contactNumber || 'N/A'}
-Preferred Contact Method: ${preferredContact || 'N/A'}
+Preferred Contact Method: ${formatYesNo(preferredContact)}
 Message: ${message}
-Receive Updates: ${receiveUpdates}
+Receive Updates: ${formatYesNo(receiveUpdates)}
+
 We appreciate your interest in our services.
 
 Best regards,
