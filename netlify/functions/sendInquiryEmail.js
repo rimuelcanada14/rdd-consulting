@@ -18,10 +18,11 @@ export async function handler(event, context) {
       receiveUpdates,
     } = data;
 
-    if (!fullName || !email || !inquiry || !message) {
+    // Only require essential fields - message is now optional
+    if (!fullName || !email || !inquiry) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: 'Missing required fields.' }),
+        body: JSON.stringify({ error: 'Missing required fields: Full Name, Email, and Inquiry Type are required.' }),
       };
     }
 
@@ -66,11 +67,15 @@ export async function handler(event, context) {
             </tr>
             <tr>
               <td style="padding: 8px; border-bottom: 1px solid #ddd; font-weight: bold;">Preferred Contact Method:</td>
-              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${formatYesNo(preferredContact)}</td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${preferredContact || 'N/A'}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd; font-weight: bold;">Inquiry Type:</td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${inquiry}</td>
             </tr>
             <tr>
               <td style="padding: 8px; border-bottom: 1px solid #ddd; font-weight: bold; vertical-align: top;">Message:</td>
-              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${message}</td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${message || 'No additional message provided'}</td>
             </tr>
             <tr>
               <td style="padding: 8px; border-bottom: 1px solid #ddd; font-weight: bold; vertical-align: top;">Receive Updates:</td>
@@ -87,8 +92,9 @@ Inquiry Details:
 Name: ${fullName}
 Email: ${email}
 Phone Number: ${contactNumber || 'N/A'}
-Preferred Contact Method: ${formatYesNo(preferredContact)}
-Message: ${message}
+Preferred Contact Method: ${preferredContact || 'N/A'}
+Inquiry Type: ${inquiry}
+Message: ${message || 'No additional message provided'}
 Receive Updates: ${formatYesNo(receiveUpdates)}
 
 Please assign this inquiry to the appropriate team member for follow-up.`,
@@ -121,11 +127,15 @@ Please assign this inquiry to the appropriate team member for follow-up.`,
             </tr>
             <tr>
               <td style="padding: 8px; border-bottom: 1px solid #ddd; font-weight: bold;">Preferred Contact Method:</td>
-              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${formatYesNo(preferredContact)}</td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${preferredContact || 'N/A'}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd; font-weight: bold;">Inquiry Type:</td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${inquiry}</td>
             </tr>
             <tr>
               <td style="padding: 8px; border-bottom: 1px solid #ddd; font-weight: bold; vertical-align: top;">Message:</td>
-              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${message}</td>
+              <td style="padding: 8px; border-bottom: 1px solid #ddd;">${message || 'No additional message provided'}</td>
             </tr>
             <tr>
               <td style="padding: 8px; border-bottom: 1px solid #ddd; font-weight: bold; vertical-align: top;">Receive Updates:</td>
@@ -153,8 +163,9 @@ For your reference, here are the details you submitted:
 Name: ${fullName}
 Email: ${email}
 Phone Number: ${contactNumber || 'N/A'}
-Preferred Contact Method: ${formatYesNo(preferredContact)}
-Message: ${message}
+Preferred Contact Method: ${preferredContact || 'N/A'}
+Inquiry Type: ${inquiry}
+Message: ${message || 'No additional message provided'}
 Receive Updates: ${formatYesNo(receiveUpdates)}
 
 We appreciate your interest in our services.
