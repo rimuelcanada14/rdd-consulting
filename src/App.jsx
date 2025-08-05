@@ -23,6 +23,7 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
   const [isScrolling, setIsScrolling] = useState(false)
+  const [isLoading, setIsLoading] = useState(false) // Add loading state
   const [openDropdowns, setOpenDropdowns] = useState({
     orgStrategy: false,
     hrSystems: false,
@@ -52,6 +53,8 @@ const handleFormChange = (e) => {
 
 const handleFormSubmit = async (e) => {
   e.preventDefault();
+  
+  setIsLoading(true); // Start loading
 
   try {
     const response = await fetch('/.netlify/functions/sendInquiryEmail', {
@@ -61,6 +64,8 @@ const handleFormSubmit = async (e) => {
       },
       body: JSON.stringify(formData),
     });
+
+    setIsLoading(false); // Stop loading before showing alert
 
     if (response.ok) {
       alert('Thank you for your inquiry! We will get back to you soon.');
@@ -77,6 +82,7 @@ const handleFormSubmit = async (e) => {
       alert('Failed to send inquiry. Please try again later.');
     }
   } catch (error) {
+    setIsLoading(false); // Stop loading before showing alert
     console.error('Error sending inquiry:', error);
     alert('An error occurred. Please try again later.');
   }
@@ -228,6 +234,58 @@ const scrollRight = () => {
 
   return (
     <>
+      {/* Loading Screen */}
+      {isLoading && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          backgroundColor: 'rgba(0, 0, 0, 0.7)',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 9999,
+          backdropFilter: 'blur(5px)'
+        }}>
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '20px'
+          }}>
+            {/* Spinner */}
+            <div style={{
+              width: '50px',
+              height: '50px',
+              border: '4px solid #f3f3f3',
+              borderTop: '4px solid #004AAD',
+              borderRadius: '50%',
+              animation: 'spin 1s linear infinite'
+            }}></div>
+            
+            {/* Loading Text */}
+            <p style={{
+              color: 'white',
+              fontSize: '18px',
+              fontWeight: '500',
+              margin: 0
+            }}>
+              Sending your inquiry...
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Add CSS for spinner animation */}
+      <style jsx>{`
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      `}</style>
+
       {/* Header */}
       <header className="header">
         <div className="header-container">
@@ -929,8 +987,8 @@ const scrollRight = () => {
                 </label>
               </div>
 
-              <button type="submit" className="submit-button">
-                Submit
+              <button type="submit" className="submit-button" disabled={isLoading}>
+                {isLoading ? 'Sending...' : 'Submit'}
               </button>
             </form>
           </div>
