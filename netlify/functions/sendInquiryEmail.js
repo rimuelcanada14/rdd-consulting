@@ -48,10 +48,10 @@ export async function handler(event, context) {
       to: ['rimuelcanada@gmail.com', 'canadarimuel@gmail.com'],
       subject: `New Inquiry from ${fullName}`,
       html: `
-        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px;">
           <p>A new inquiry has been submitted through the website.</p>
           
-          <h3 style="color: black; margin-top: 20px; border-bottom: 2px solid #004aad">Inquiry Details:</h3>
+          <h3 style="color: black; margin-top: 25px; padding-bottom: 5px;">Inquiry Details:</h3>
           <table style="border-collapse: collapse; width: 100%; margin: 15px 0;">
             <tr>
               <td style="padding: 8px; border-bottom: 1px solid #ddd; font-weight: bold; width: 120px;">Name:</td>
@@ -83,7 +83,7 @@ export async function handler(event, context) {
             </tr>
           </table>
           
-          <p style="margin-top: 20px; color: #555;">Please assign this inquiry to the appropriate team member for follow-up.</p>
+          <p style="margin-top: 25px; color: #555;">Please assign this inquiry to the appropriate team member for follow-up.</p>
         </div>
       `,
       text: `A new inquiry has been submitted through the website.
@@ -110,7 +110,7 @@ Please assign this inquiry to the appropriate team member for follow-up.`,
           
           <p>Thank you for contacting us. We have received your inquiry and will be reviewing it shortly. Our team will get back to you within <strong>1 business day</strong>.</p>
           
-          <h3 style="color: black; margin-top: 25px; border-bottom: 2px solid #004aad; padding-bottom: 5px;">For your reference, here are the details you submitted:</h3>
+          <h3 style="color: black; margin-top: 25px; padding-bottom: 5px;">For your reference, here are the details you submitted:</h3>
           
           <table style="border-collapse: collapse; width: 100%; margin: 15px 0;">
             <tr>
