@@ -854,6 +854,7 @@ const scrollRight = () => {
                   <option value="Training">Training</option>
                   <option value="Management/HR Inquiry">Management/HR Inquiry</option>
                   <option value="Research">Research</option>
+                  <option value="Others">Others</option>
                 </select>
               </div>
 
@@ -910,6 +911,7 @@ const scrollRight = () => {
                   <option value="SMS">Text/SMS</option>
                   <option value="WhatsApp">WhatsApp</option>
                   <option value="Viber">Viber</option>
+                  <option value="Others">Others</option>
                 </select>
               </div>
 

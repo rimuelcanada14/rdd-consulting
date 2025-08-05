@@ -51,7 +51,7 @@ export async function handler(event, context) {
         <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
           <p>A new inquiry has been submitted through the website.</p>
           
-          <h3 style="color: #2c3e50; margin-top: 20px;">Inquiry Details:</h3>
+          <h3 style="color: black; margin-top: 20px; border-bottom: 2px solid #004aad">Inquiry Details:</h3>
           <table style="border-collapse: collapse; width: 100%; margin: 15px 0;">
             <tr>
               <td style="padding: 8px; border-bottom: 1px solid #ddd; font-weight: bold; width: 120px;">Name:</td>
@@ -110,7 +110,7 @@ Please assign this inquiry to the appropriate team member for follow-up.`,
           
           <p>Thank you for contacting us. We have received your inquiry and will be reviewing it shortly. Our team will get back to you within <strong>1 business day</strong>.</p>
           
-          <h3 style="color: #2c3e50; margin-top: 25px; border-bottom: 2px solid #3498db; padding-bottom: 5px;">For your reference, here are the details you submitted:</h3>
+          <h3 style="color: black; margin-top: 25px; border-bottom: 2px solid #004aad; padding-bottom: 5px;">For your reference, here are the details you submitted:</h3>
           
           <table style="border-collapse: collapse; width: 100%; margin: 15px 0;">
             <tr>
