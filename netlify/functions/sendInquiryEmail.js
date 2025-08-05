@@ -25,7 +25,7 @@ export async function handler(event, context) {
       };
     }
 
-    const transporter = nodemailer.createTransport({
+    const transporter = nodemailer.createTransporter({
       host: process.env.SMTP_HOST,
       port: 587,
       secure: false,
@@ -38,37 +38,38 @@ export async function handler(event, context) {
     const internalMailOptions = {
       from: `"Riego de Dios Consulting" <${process.env.SMTP_USER}>`,
       to: 'rimuelcanada@gmail.com',
-      subject: `[${inquiry}] Inquiry for Riego de Dios Consulting - ${fullName}`,
-      text: `Full Name: ${fullName}
-Email Address: ${email}
-Contact Number: ${contactNumber || 'N/A'}
-Preferred Contact Method: ${preferredContact || 'N/A'}
-Inquiry: ${inquiry}
-Message: ${message}
-Updates: ${receiveUpdates ? 'Yes' : 'No'}
-Submitted on: ${new Date().toLocaleString()}
-`,
+      subject: `New Inquiry from ${fullName}`,
+      text: `A new inquiry has been submitted through the website.
+
+Inquiry Details:
+**Name:** ${fullName}
+**Email:** ${email}
+**Phone Number:** ${contactNumber || 'N/A'}
+**Message:** ${message}
+
+Please assign this inquiry to the appropriate team member for follow-up.`,
     };
 
     const userConfirmationMailOptions = {
       from: `"Riego de Dios Consulting" <${process.env.SMTP_USER}>`,
       to: email,
-      subject: `Thank you for contacting Riego de Dios Consulting`,
+      subject: `Riego de Dios Consulting - Confirmation`,
       text: `Dear ${fullName},
 
-Thank you for reaching out to Riego de Dios Consulting. We have received your inquiry:
+Thank you for contacting us. We have received your inquiry and will be reviewing it shortly. Our team will get back to you within 1 business day.
 
----
-Inquiry Type: ${inquiry}
-Message: ${message}
+For your reference, here are the details you submitted:
+**Name:** ${fullName}
+**Email:** ${email}
+**Phone Number:** ${contactNumber || 'N/A'}
+**Message:** ${message}
 
-Our team will get back to you as soon as possible.
+We appreciate your interest in our services.
 
-If you have any further questions or need immediate assistance, please do not hesitate to contact us.
-
-Best regards,
-Riego de Dios Consulting Team
-`,
+Sincerely,
+The Team
+Info@riegodedios.com
+09178790029`,
     };
 
     await transporter.sendMail(internalMailOptions);
