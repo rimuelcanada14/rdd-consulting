@@ -5,22 +5,21 @@
 html {
   scroll-behavior: smooth;
 }
-
 /* Adjust scroll position to account for fixed header */
 #home {
-  scroll-margin-top: 80px;
+  scroll-margin-top: 40px;
 }
 
 #about {
-  scroll-margin-top: 80px;
+  scroll-margin-top: 40px;
 }
 
 #services {
-  scroll-margin-top: 80px;
+  scroll-margin-top: 40px;
 }
 
 #connect {
-  scroll-margin-top: 80px;
+  scroll-margin-top: 40px;
 }
 
 #root {
@@ -227,7 +226,7 @@ html {
 /* Hero Section */
 .hero-section {
   padding: 4rem 0;
-  background-color: transparent;
+  background-color: white;
   width: 100vw;
   margin-left: calc(-50vw + 50%);
  
@@ -352,6 +351,7 @@ html {
   width: 100vw;
   margin-left: calc(-50vw + 50%);
   overflow: hidden;
+  background-color: white;
 }
 
 .partnerships-container {
@@ -698,6 +698,7 @@ html {
   padding: 2rem 0;
   width: 100vw;
   margin-left: calc(-50vw + 50%);
+  background-color: white;
 }
 
 .services-container {
@@ -910,6 +911,26 @@ html {
   margin-bottom: 0.25rem;
 }
 
+/* Only target autofilled inputs - more specific approach */
+.form-input:-webkit-autofill,
+.form-input:-webkit-autofill:hover,
+.form-input:-webkit-autofill:focus,
+.form-input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #FFFFFF inset !important;
+  -webkit-text-fill-color: #000000 !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.form-textarea:-webkit-autofill,
+.form-textarea:-webkit-autofill:hover,
+.form-textarea:-webkit-autofill:focus,
+.form-textarea:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #FFFFFF inset !important;
+  -webkit-text-fill-color: #000000 !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Keep your original input/textarea styles intact */
 .form-input,
 .form-textarea {
   padding: .6rem;
@@ -919,8 +940,14 @@ html {
   font-size: 1rem;
   font-family: 'Poppins', sans-serif;
   background-color: #FFFFFF;
-  color: black;
+  color: #000000;
   transition: box-shadow 0.3s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
 }
 
 .form-input:focus,
@@ -949,10 +976,49 @@ html {
   width: 20px;
   height: 20px;
   margin-top: 0.1rem;
-  accent-color: #FFFFFF;
   cursor: pointer;
   flex-shrink: 0;
+  /* Force override dark mode */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 3px;
+  position: relative;
+  transition: all 0.3s ease;
+  /* Prevent dark mode from affecting this element */
+  color-scheme: light;
 }
+
+.form-checkbox:checked {
+  background-color: #FFFFFF;
+  border-color: #FFFFFF;
+}
+
+.form-checkbox:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #004AAD;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.form-checkbox:hover {
+  border-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.form-checkbox:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}
+
+
 
 .checkbox-label {
   font-size: 0.95rem;

@@ -847,6 +847,7 @@ const scrollRight = () => {
                   value={formData.inquiry}
                   onChange={handleFormChange}
                   className="form-input"
+                  required
                 >
                   <option value="">Select inquiry type</option>
                   <option value="Consulting">Consulting</option>
@@ -877,7 +878,6 @@ const scrollRight = () => {
                   value={formData.message}
                   onChange={handleFormChange}
                   className="form-textarea"
-                  required
                 />
               </div>
               
@@ -891,6 +891,7 @@ const scrollRight = () => {
                   value={formData.contactNumber}
                   onChange={handleFormChange}
                   className="form-input"
+                  required
                 />
               </div>
 
@@ -902,6 +903,7 @@ const scrollRight = () => {
                   value={formData.preferredContact}
                   onChange={handleFormChange}
                   className="form-input"
+                  required
                 >
                   <option value="">Select a contact method</option>
                   <option value="Email">Email</option>
