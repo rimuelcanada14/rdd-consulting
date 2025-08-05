@@ -113,11 +113,11 @@ Please assign this inquiry to the appropriate team member for follow-up.`,
           <p style="margin-top: 25px;">We appreciate your interest in our services.</p>
           
           <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd;">
-            <p style="margin: 0;"><strong>Sincerely,</strong></p>
-            <p style="margin: 5px 0; color: #2c3e50; font-weight: bold;">The Team</p>
+            <p style="margin: 0; color: #2c3e50;"><strong>Best regards,</strong></p>
+            <p style="margin: 5px 0; color: #2c3e50; font-weight: bold;">The Riego de Dios Consulting Team</p>
             <p style="margin: 0; color: #666;">
-              <a href="mailto:Info@riegodedios.com" style="color: #3498db; text-decoration: none;">Info@riegodedios.com</a><br>
-              <span style="color: #666;">09178790029</span>
+              Email: <a href="mailto:Info@riegodedios.com" style="color: #3498db; text-decoration: none;">Info@riegodedios.com</a><br>
+              Phone: <span style="color: #666;">09178790029</span>
             </p>
           </div>
         </div>
@@ -134,10 +134,10 @@ Message: ${message}
 
 We appreciate your interest in our services.
 
-Sincerely,
-The Team
-Info@riegodedios.com
-09178790029`,
+Best regards,
+The Riego de Dios Consulting Team
+Email: Info@riegodedios.com
+Phone: 09178790029`,
     };
 
     await transporter.sendMail(internalMailOptions);
