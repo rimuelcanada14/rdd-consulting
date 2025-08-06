@@ -416,7 +416,7 @@ html {
   display: flex;
   gap: 1rem;
   width: fit-content;
-  animation: marquee-infinite 120s linear infinite;
+  animation: marquee-infinite 160s linear infinite;
   will-change: transform;
   padding: 1rem 0.5rem;
 }
@@ -1259,7 +1259,7 @@ html {
 
   .marquee-content {
     gap: 1rem;
-    animation: marquee-infinite 50s linear infinite;
+    animation: marquee-infinite 80s linear infinite;
   }
 
   .partner-logo-wrapper {
