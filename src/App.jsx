@@ -24,6 +24,7 @@ function App() {
   const [isPaused, setIsPaused] = useState(false)
   const [isScrolling, setIsScrolling] = useState(false)
   const [isLoading, setIsLoading] = useState(false) // Add loading state
+  const [currentSlide, setCurrentSlide] = useState(0) // Add carousel state
   const [openDropdowns, setOpenDropdowns] = useState({
     orgStrategy: false,
     hrSystems: false,
@@ -40,6 +41,118 @@ function App() {
   })
   const marqueeRef = useRef(null)
   const scrollTimeoutRef = useRef(null)
+
+  // Carousel images array
+  const carouselImages = [
+  { src: "/about1.jpg", alt: "Team meeting" },
+  { src: "/about2.jpg", alt: "Team photo" },
+  { src: "/about3.jpg", alt: "Office workspace" },
+  { src: "/about4.jpg", alt: "Team collaboration" },
+  { src: "/about5.jpg", alt: "Strategic planning session" },
+  { src: "/about6.jpg", alt: "Leadership workshop" },
+  { src: "/about7.jpg", alt: "Corporate training" },
+  { src: "/about8.jpg", alt: "Team building activity" },
+  { src: "/about9.jpg", alt: "Client consultation" },
+  { src: "/about10.jpg", alt: "Executive coaching session" },
+  { src: "/about11.jpg", alt: "Professional development" },
+  { src: "/about12.jpg", alt: "Company culture event" },
+  { src: "/about13.jpg", alt: "Innovation workshop" },
+  { src: "/about14.jpg", alt: "Organizational transformation" },
+  { src: "/about15.jpg", alt: "Success celebration" }
+]
+
+  // Carousel auto-slide effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % carouselImages.length)
+    }, 4000) // Change slide every 4 seconds
+
+    return () => clearInterval(interval)
+  }, [carouselImages.length])
+
+  // Function to go to specific slide
+  const goToSlide = (slideIndex) => {
+    setCurrentSlide(slideIndex)
+  }
+
+  // Function to go to next slide
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % carouselImages.length)
+  }
+
+  // Function to go to previous slide
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + carouselImages.length) % carouselImages.length)
+  }
+
+  // Touch/swipe handling
+  const [touchStart, setTouchStart] = useState(null)
+  const [touchEnd, setTouchEnd] = useState(null)
+
+  // Minimum swipe distance (in px)
+  const minSwipeDistance = 50
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null) // otherwise the swipe is fired even with usual touch events
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+    
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+
+    if (isLeftSwipe) {
+      nextSlide()
+    } else if (isRightSwipe) {
+      prevSlide()
+    }
+  }
+
+  // Mouse drag handling for desktop
+  const [mouseStart, setMouseStart] = useState(null)
+  const [mouseEnd, setMouseEnd] = useState(null)
+  const [isDragging, setIsDragging] = useState(false)
+
+  const onMouseDown = (e) => {
+    setMouseEnd(null)
+    setMouseStart(e.clientX)
+    setIsDragging(true)
+  }
+
+  const onMouseMove = (e) => {
+    if (!isDragging) return
+    setMouseEnd(e.clientX)
+  }
+
+  const onMouseUp = () => {
+    if (!mouseStart || !mouseEnd || !isDragging) {
+      setIsDragging(false)
+      return
+    }
+    
+    const distance = mouseStart - mouseEnd
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+
+    if (isLeftSwipe) {
+      nextSlide()
+    } else if (isRightSwipe) {
+      prevSlide()
+    }
+    
+    setIsDragging(false)
+  }
+
+  const onMouseLeave = () => {
+    setIsDragging(false)
+  }
 
   // Add this function to handle form changes
 const handleFormChange = (e) => {
@@ -236,7 +349,14 @@ const scrollRight = () => {
     { name: "Mind", url: "/mind.png" },
     { name: "PMap", url: "/pmap.png" },
     { name: "Ariva", url: "/ariva.png" },
-    { name: "Dept", url: "/dept.png" }
+    { name: "Dept", url: "/dept.png" },
+    { name: "af", url: "/af.png" },
+    { name: "afp", url: "/afp.png" },
+    { name: "dnd", url: "/dnd.png" },
+    { name: "grab", url: "/grab.png" },
+    { name: "multi", url: "/multi.png" },
+    { name: "parad", url: "/parad.jpg" },
+    { name: "tisland", url: "/tisland.jpg" },
 ]
 
   // Create 100 repetitions of the partner logos
@@ -438,37 +558,60 @@ const scrollRight = () => {
             <h2 className="about-title">About Riego de Dios Consulting</h2>
             
             <div className="about-content">
-              {/* Who We Are */}
               <div className="about-item">
                 <div className="about-left">
-                  <img 
-                    src="/about1.jpg" 
-                    alt="Team meeting" 
-                    className="about-image"
-                  />
-                </div>
-                <div className="about-right">
-                  <h2 className="about-subtitle">Who We Are</h2>
-                  <p className="about-text">
-                    Riego de Dios Consulting specializes in organizational transformation, leadership development, and executive placement. We help businesses enhance performance, develop strong leaders, and navigate change with tailored, data-driven solutions. With a commitment to excellence, we empower organizations to thrive, lead, and stay ahead in a rapidly evolving world.
-                  </p>
-                </div>
-              </div>
+                  {/* Carousel container */}
+                  <div 
+                    className="carousel-container"
+                    onTouchStart={onTouchStart}
+                    onTouchMove={onTouchMove}
+                    onTouchEnd={onTouchEnd}
+                    onMouseDown={onMouseDown}
+                    onMouseMove={onMouseMove}
+                    onMouseUp={onMouseUp}
+                    onMouseLeave={onMouseLeave}
+                    style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
+                  >
+                    {carouselImages.map((image, index) => (
+                      <img 
+                        key={index}
+                        src={image.src} 
+                        alt={image.alt} 
+                        className={`about-image carousel-image ${index === currentSlide ? 'active' : ''}`}
+                        onError={(e) => {
+                          e.target.src = `https://via.placeholder.com/600x300/004AAD/FFFFFF?text=${image.alt}`
+                        }}
+                        draggable={false} // Prevent default image drag
+                      />
+                    ))}
 
-              {/* Mission */}
-              <div className="about-item reverse">
-                <div className="about-left">
-                  <h2 className="about-subtitle">Mission</h2>
-                  <p className="about-text">
-                    Our mission is to uplift communities through accessible best-in-class HR practices and development programs. We aim to achieve this by living our values of integrity, inclusivity, and innovation.
-                  </p>
+                    {/* Carousel navigation */}
+                    <div className="carousel-dots">
+                      {carouselImages.map((_, index) => (
+                        <span 
+                          key={index}
+                          className={`dot ${index === currentSlide ? 'active' : ''}`}
+                          onClick={() => goToSlide(index)}
+                        ></span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
+                
                 <div className="about-right">
-                  <img 
-                    src="/about2.jpg" 
-                    alt="Team photo" 
-                    className="about-image"
-                  />
+                  <div className="about-section-content">
+                    <h2 className="about-subtitle">Who We Are</h2>
+                    <p className="about-text">
+                      Riego de Dios Consulting specializes in organizational transformation, leadership development, and executive placement. We help businesses enhance performance, develop strong leaders, and navigate change with tailored, data-driven solutions. With a commitment to excellence, we empower organizations to thrive, lead, and stay ahead in a rapidly evolving world.
+                    </p>
+                  </div>
+                  
+                  <div className="about-section-content">
+                    <h2 className="about-subtitle">Mission</h2>
+                    <p className="about-text">
+                      Our mission is to uplift communities through accessible best-in-class HR practices and development programs. We aim to achieve this by living our values of integrity, inclusivity, and innovation.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

@@ -421,9 +421,6 @@ html {
   padding: 1rem 0.5rem;
 }
 
-.marquee-content.paused {
-  animation-play-state: paused;
-}
 
 /* About Section */
 
@@ -452,33 +449,131 @@ html {
 .about-content {
   display: flex;
   flex-direction: column;
-  gap: 6rem;
+  gap: 3rem;
+  align-items: center;
+  text-align: center;
 }
 
 .about-item {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
   align-items: center;
+  max-width: 1200px;
+  width: 100%;
 }
 
-.about-item.reverse {
-  grid-template-columns: 1fr 1fr;
-}
-
-.about-item.reverse .about-left {
-  order: 1;
-}
-
-.about-item.reverse .about-right {
-  order: 2;
-}
-
-.about-left,
-.about-right {
+.about-left {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
+  text-align: center;
+}
+.about-right {
+    max-width: 1500px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+/* Enhanced Carousel Container Styles */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 300px; /* Fixed height */
+  overflow: hidden;
+  border-radius: 12px;
+  margin: 0 auto;
+  background-color: #f0f0f0; /* Background color in case images don't load */
+  cursor: grab; /* Show grab cursor */
+  user-select: none; /* Prevent text selection during drag */
+}
+
+.carousel-container:active {
+  cursor: grabbing; /* Show grabbing cursor when dragging */
+}
+
+.carousel-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  
+  /* Key properties to ensure images fit properly */
+  object-fit: cover; /* This will crop images to fit while maintaining aspect ratio */
+  object-position: center; /* Center the image within the container */
+  
+  /* Prevent default drag behavior */
+  pointer-events: none;
+  user-select: none;
+}
+
+.carousel-image.active {
+  opacity: 1;
+}
+
+/* Carousel Arrow Styles */
+.nav-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #004AAD;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  outline: none !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.carousel-arrow:hover {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-arrow-left {
+  left: 15px;
+}
+
+.carousel-arrow-right {
+  right: 15px;
+}
+
+.carousel-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dot.active {
+  background-color: #FFFFFF;
+}
+
+.about-section-content {
+  margin-bottom: 3rem;
+}
+
+.about-section-content:last-child {
+  margin-bottom: 0;
 }
 
 .about-subtitle {
@@ -498,7 +593,7 @@ html {
 
 .about-image {
   width: 100%;
-  height: 300px;
+  height: 350px;
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
@@ -657,7 +752,7 @@ html {
   display: flex;
   gap: .5rem;
   width: fit-content;
-  animation: marquee-infinite 100s linear infinite;
+  animation: marquee-infinite 280s linear infinite;
   will-change: transform;
   padding: 1rem;
 }
@@ -1259,7 +1354,7 @@ html {
 
   .marquee-content {
     gap: 1rem;
-    animation: marquee-infinite 80s linear infinite;
+    animation: marquee-infinite 200s linear infinite;
   }
 
   .partner-logo-wrapper {
@@ -1319,6 +1414,44 @@ html {
   .about-image {
     height: 250px;
   }
+
+  .carousel-container {
+    height: 200px; /* Even shorter on small mobile screens */
+  }
+
+/* Enhanced dots styling for better visibility with more images */
+.carousel-dots {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap; /* Allow wrapping if there are many dots */
+  justify-content: center;
+  max-width: 90%; /* Prevent dots from going outside container */
+  padding: 5px 10px;
+  background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+  border-radius: 15px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0; /* Prevent dots from shrinking */
+}
+
+.dot.active {
+  background-color: #FFFFFF;
+}
+
+.dot:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
   .values-item {
     padding: 1rem;
   }
