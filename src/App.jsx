@@ -227,7 +227,7 @@ const scrollRight = () => {
     { name: "CPA", url: "/cpa.jpg" },
     { name: "OLem", url: "/olern.png" },
     { name: "Disco", url: "/disco.png" },
-    { name: "ALFI", url: "/alfi.png" },
+    { name: "ALFI", url: "/alli.png" },
     { name: "Vivant", url: "/vivant.png" },
     { name: "Camel", url: "/camel.jpg" },
     { name: "ITD", url: "/itd.png" },
