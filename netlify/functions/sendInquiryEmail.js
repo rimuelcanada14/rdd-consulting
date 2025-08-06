@@ -45,7 +45,7 @@ export async function handler(event, context) {
 
     const internalMailOptions = {
       from: `"Riego de Dios Consulting" <${process.env.SMTP_USER}>`,
-      to: ['rimuelcanada@gmail.com', 'canadarimuel@gmail.com'],
+      to: ['eric@riegodedios.com', 'info@riegodedios.com'],
       subject: `New Inquiry from ${fullName}`,
       html: `
         <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px;">
