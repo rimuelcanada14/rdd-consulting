@@ -1033,12 +1033,12 @@ const scrollRight = () => {
         <div className="contact-row">
             <div className="contact-item">
                 <a 
-                    href="viber://contact?number=+639178994006" 
+                    href="viber://chat?number=%2B639178790029" 
                     target="_blank" 
                     rel="noopener noreferrer"
                 >
                     <FaViber className="contact-icon"/>
-                    <span className="contact-des">+639178994006</span>
+                    <span className="contact-des">+639178790029</span>
                 </a>
             </div>
             
