@@ -385,7 +385,7 @@ const scrollRight = () => {
         {/* Partnerships Section */}
         <section className="partnerships-section">
           <div className="partnerships-container">
-            <h2 className="partnerships-title">In Partnerships With:</h2>
+            <h2 className="partnerships-title">Partnerships:</h2>
             <div className="marquee-wrapper">
               <button 
                 className="nav-arrow nav-arrow-left" 
