@@ -221,7 +221,23 @@ const scrollRight = () => {
     { name: "ncc", url: "/ncc.png" },
     { name: "jti", url: "/jti.png" },
     { name: "vestas", url: "/vestas.png" },
-  ]
+    { name: "Lati", url: "/lati.png" },
+    { name: "RBV", url: "/rbv.jpg" },
+    { name: "Eternal", url: "/eternal.png" },
+    { name: "CPA", url: "/cpa.jpg" },
+    { name: "OLem", url: "/olem.png" },
+    { name: "Disco", url: "/disco.png" },
+    { name: "ALFI", url: "/alfi.png" },
+    { name: "Vivant", url: "/vivant.png" },
+    { name: "Camel", url: "/camel.jpg" },
+    { name: "ITD", url: "/itd.png" },
+    { name: "Landers", url: "/landers.png" },
+    { name: "GV", url: "/gv.png" },
+    { name: "Mind", url: "/mind.png" },
+    { name: "PMap", url: "/pmap.png" },
+    { name: "Ariva", url: "/ariva.png" },
+    { name: "Dept", url: "/dept.png" }
+]
 
   // Create 100 repetitions of the partner logos
   const createLoopedLogos = () => {
