@@ -1019,7 +1019,7 @@ const scrollRight = () => {
               </div>
               
               <div className="footer-right">
-                <h3 className="footer-title">Reach us out at:</h3>
+                <h3 className="footer-title">Reach out to us at:</h3>
                 
                 <div className="contact-info">
         <div className="contact-row">
