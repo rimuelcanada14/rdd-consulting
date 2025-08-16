@@ -44,22 +44,22 @@ function App() {
 
   // Carousel images array
   const carouselImages = [
-  { src: "/about1.jpg", alt: "Team meeting" },
-  { src: "/about2.jpg", alt: "Team photo" },
-  { src: "/about3.jpg", alt: "Office workspace" },
-  { src: "/about4.jpg", alt: "Team collaboration" },
-  { src: "/about5.jpg", alt: "Strategic planning session" },
-  { src: "/about6.jpg", alt: "Leadership workshop" },
-  { src: "/about7.jpg", alt: "Corporate training" },
-  { src: "/about8.jpg", alt: "Team building activity" },
-  { src: "/about9.jpg", alt: "Client consultation" },
-  { src: "/about10.jpg", alt: "Executive coaching session" },
-  { src: "/about11.jpg", alt: "Professional development" },
-  { src: "/about12.jpg", alt: "Company culture event" },
-  { src: "/about13.jpg", alt: "Innovation workshop" },
-  { src: "/about14.jpg", alt: "Organizational transformation" },
-  { src: "/about15.jpg", alt: "Success celebration" }
-]
+    { src: "/about1.jpg", alt: "Team meeting" },
+    { src: "/about2.jpg", alt: "Team photo" },
+    { src: "/about3.jpg", alt: "Office workspace" },
+    { src: "/about4.jpg", alt: "Team collaboration" },
+    { src: "/about5.jpg", alt: "Strategic planning session" },
+    { src: "/about6.jpg", alt: "Leadership workshop" },
+    { src: "/about7.jpg", alt: "Corporate training" },
+    { src: "/about8.jpg", alt: "Team building activity" },
+    { src: "/about9.jpg", alt: "Client consultation" },
+    { src: "/about10.jpg", alt: "Executive coaching session" },
+    { src: "/about11.jpg", alt: "Professional development" },
+    { src: "/about12.jpg", alt: "Company culture event" },
+    { src: "/about13.jpg", alt: "Innovation workshop" },
+    { src: "/about14.jpg", alt: "Organizational transformation" },
+    { src: "/about15.jpg", alt: "Success celebration" }
+  ]
 
   // Carousel auto-slide effect
   useEffect(() => {
@@ -103,7 +103,7 @@ function App() {
 
   const onTouchEnd = () => {
     if (!touchStart || !touchEnd) return
-    
+
     const distance = touchStart - touchEnd
     const isLeftSwipe = distance > minSwipeDistance
     const isRightSwipe = distance < -minSwipeDistance
@@ -136,7 +136,7 @@ function App() {
       setIsDragging(false)
       return
     }
-    
+
     const distance = mouseStart - mouseEnd
     const isLeftSwipe = distance > minSwipeDistance
     const isRightSwipe = distance < -minSwipeDistance
@@ -146,7 +146,7 @@ function App() {
     } else if (isRightSwipe) {
       prevSlide()
     }
-    
+
     setIsDragging(false)
   }
 
@@ -155,54 +155,54 @@ function App() {
   }
 
   // Add this function to handle form changes
-const handleFormChange = (e) => {
-  const { name, value, type, checked } = e.target
-  setFormData(prev => ({
-    ...prev,
-    [name]: type === 'checkbox' ? checked : value
-  }))
-}
-
-
-const handleFormSubmit = async (e) => {
-  e.preventDefault();
-  
-  setIsLoading(true); // Start loading
-
-  try {
-    const response = await fetch('/.netlify/functions/sendInquiryEmail', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
-
-    setIsLoading(false); // Stop loading before showing alert
-
-    if (response.ok) {
-      alert('Thank you for your inquiry! We will get back to you soon.');
-      setFormData({
-        fullName: '',
-        email: '',
-        contactNumber: '',
-        preferredContact: '',
-        inquiry: '',
-        message: '',
-        receiveUpdates: false,
-      });
-    } else {
-      alert('Failed to send inquiry. Please try again later.');
-    }
-  } catch (error) {
-    setIsLoading(false); // Stop loading before showing alert
-    console.error('Error sending inquiry:', error);
-    alert('An error occurred. Please try again later.');
+  const handleFormChange = (e) => {
+    const { name, value, type, checked } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }))
   }
-};
 
-  
-  
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+
+    setIsLoading(true); // Start loading
+
+    try {
+      const response = await fetch('/.netlify/functions/sendInquiryEmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      setIsLoading(false); // Stop loading before showing alert
+
+      if (response.ok) {
+        alert('Thank you for your inquiry! We will get back to you soon.');
+        setFormData({
+          fullName: '',
+          email: '',
+          contactNumber: '',
+          preferredContact: '',
+          inquiry: '',
+          message: '',
+          receiveUpdates: false,
+        });
+      } else {
+        alert('Failed to send inquiry. Please try again later.');
+      }
+    } catch (error) {
+      setIsLoading(false); // Stop loading before showing alert
+      console.error('Error sending inquiry:', error);
+      alert('An error occurred. Please try again later.');
+    }
+  };
+
+
+
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -235,79 +235,79 @@ const handleFormSubmit = async (e) => {
   }
 
   // Replace the useEffect for infinite scroll logic with this:
-useEffect(() => {
-  const marqueeElement = marqueeRef.current
-  if (!marqueeElement) return
+  useEffect(() => {
+    const marqueeElement = marqueeRef.current
+    if (!marqueeElement) return
 
-  const handleScroll = () => {
-    if (isScrolling) return // Don't interfere during manual scrolling
-    
-    const scrollLeft = marqueeElement.scrollLeft
-    const scrollWidth = marqueeElement.scrollWidth
-    const clientWidth = marqueeElement.clientWidth
-    const maxScroll = scrollWidth - clientWidth
-    
-    // Only reset when very close to the edges (seamless loop)
-    if (scrollLeft >= maxScroll * 0.9) {
-      marqueeElement.scrollLeft = maxScroll * 0.1
-    } else if (scrollLeft <= maxScroll * 0.1) {
-      marqueeElement.scrollLeft = maxScroll * 0.9
+    const handleScroll = () => {
+      if (isScrolling) return // Don't interfere during manual scrolling
+
+      const scrollLeft = marqueeElement.scrollLeft
+      const scrollWidth = marqueeElement.scrollWidth
+      const clientWidth = marqueeElement.clientWidth
+      const maxScroll = scrollWidth - clientWidth
+
+      // Only reset when very close to the edges (seamless loop)
+      if (scrollLeft >= maxScroll * 0.9) {
+        marqueeElement.scrollLeft = maxScroll * 0.1
+      } else if (scrollLeft <= maxScroll * 0.1) {
+        marqueeElement.scrollLeft = maxScroll * 0.9
+      }
     }
+
+    marqueeElement.addEventListener('scroll', handleScroll, { passive: true })
+    return () => marqueeElement.removeEventListener('scroll', handleScroll)
+  }, [isScrolling])
+
+  // Replace the scrollLeft and scrollRight functions with these:
+  const scrollLeft = () => {
+    if (isScrolling || !marqueeRef.current) return
+
+    setIsScrolling(true)
+    setIsPaused(true)
+
+    const currentScroll = marqueeRef.current.scrollLeft
+    const scrollAmount = 300 // Increased for smoother feel
+
+    marqueeRef.current.scrollTo({
+      left: Math.max(0, currentScroll - scrollAmount),
+      behavior: 'smooth'
+    })
+
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current)
+    }
+
+    scrollTimeoutRef.current = setTimeout(() => {
+      setIsPaused(false)
+      setIsScrolling(false)
+    }, 600) // Reduced timeout for better responsiveness
   }
 
-  marqueeElement.addEventListener('scroll', handleScroll, { passive: true })
-  return () => marqueeElement.removeEventListener('scroll', handleScroll)
-}, [isScrolling])
+  const scrollRight = () => {
+    if (isScrolling || !marqueeRef.current) return
 
-// Replace the scrollLeft and scrollRight functions with these:
-const scrollLeft = () => {
-  if (isScrolling || !marqueeRef.current) return
-  
-  setIsScrolling(true)
-  setIsPaused(true)
-  
-  const currentScroll = marqueeRef.current.scrollLeft
-  const scrollAmount = 300 // Increased for smoother feel
-  
-  marqueeRef.current.scrollTo({
-    left: Math.max(0, currentScroll - scrollAmount),
-    behavior: 'smooth'
-  })
-  
-  if (scrollTimeoutRef.current) {
-    clearTimeout(scrollTimeoutRef.current)
-  }
-  
-  scrollTimeoutRef.current = setTimeout(() => {
-    setIsPaused(false)
-    setIsScrolling(false)
-  }, 600) // Reduced timeout for better responsiveness
-}
+    setIsScrolling(true)
+    setIsPaused(true)
 
-const scrollRight = () => {
-  if (isScrolling || !marqueeRef.current) return
-  
-  setIsScrolling(true)
-  setIsPaused(true)
-  
-  const currentScroll = marqueeRef.current.scrollLeft
-  const maxScroll = marqueeRef.current.scrollWidth - marqueeRef.current.clientWidth
-  const scrollAmount = 300 // Increased for smoother feel
-  
-  marqueeRef.current.scrollTo({
-    left: Math.min(maxScroll, currentScroll + scrollAmount),
-    behavior: 'smooth'
-  })
-  
-  if (scrollTimeoutRef.current) {
-    clearTimeout(scrollTimeoutRef.current)
+    const currentScroll = marqueeRef.current.scrollLeft
+    const maxScroll = marqueeRef.current.scrollWidth - marqueeRef.current.clientWidth
+    const scrollAmount = 300 // Increased for smoother feel
+
+    marqueeRef.current.scrollTo({
+      left: Math.min(maxScroll, currentScroll + scrollAmount),
+      behavior: 'smooth'
+    })
+
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current)
+    }
+
+    scrollTimeoutRef.current = setTimeout(() => {
+      setIsPaused(false)
+      setIsScrolling(false)
+    }, 600) // Reduced timeout for better responsiveness
   }
-  
-  scrollTimeoutRef.current = setTimeout(() => {
-    setIsPaused(false)
-    setIsScrolling(false)
-  }, 600) // Reduced timeout for better responsiveness
-}
 
   const handleMarqueeInteraction = (isHovering) => {
     if (!isScrolling) {
@@ -357,7 +357,7 @@ const scrollRight = () => {
     { name: "multi", url: "/multi.png" },
     { name: "parad", url: "/parad.jpg" },
     { name: "tisland", url: "/tisland.jpg" },
-]
+  ]
 
   // Create 100 repetitions of the partner logos
   const createLoopedLogos = () => {
@@ -400,7 +400,7 @@ const scrollRight = () => {
               borderRadius: '50%',
               animation: 'spin 1s linear infinite'
             }}></div>
-            
+
             {/* Loading Text */}
             <p style={{
               color: 'white',
@@ -470,29 +470,29 @@ const scrollRight = () => {
                 A management consulting organization which provides strategic guidance and innovative solutions to help organizations grow, adapt, and thrive in an ever-changing world.
               </p>
             </div>
-            
+
             <div className="hero-right">
               <div className="service-item">
                 <div className="service-icon">
-                  <img src="/strategy.png" alt="Strategic Planning" className='service-img'/>
+                  <img src="/strategy.png" alt="Strategic Planning" className='service-img' />
                 </div>
                 <p className="service-text">
                   Helping organizations define clear goals, align their mission and vision, and build sustainable structures for long-term success.
                 </p>
               </div>
-              
+
               <div className="service-item">
                 <div className="service-icon">
-                  <img src="/leadership.png" alt="Leadership Planning" className='service-img'/>
+                  <img src="/leadership.png" alt="Leadership Planning" className='service-img' />
                 </div>
                 <p className="service-text">
                   Equipping leaders and teams with the tools, coaching, and frameworks needed to increase effectiveness, collaboration, and impact.
                 </p>
               </div>
-              
+
               <div className="service-item">
                 <div className="service-icon">
-                  <img src="/change-management.png" alt="Strategic Planning" className='service-img'/>
+                  <img src="/change-management.png" alt="Strategic Planning" className='service-img' />
                 </div>
                 <p className="service-text">
                   Guiding organizations through transformation with adaptive strategies that foster innovation and resilience in dynamic environments.
@@ -507,16 +507,16 @@ const scrollRight = () => {
           <div className="partnerships-container">
             <h2 className="partnerships-title">Partnerships:</h2>
             <div className="marquee-wrapper">
-              <button 
-                className="nav-arrow nav-arrow-left" 
+              <button
+                className="nav-arrow nav-arrow-left"
                 onClick={scrollLeft}
                 onTouchStart={scrollLeft}
               >
                 <FaArrowLeft />
               </button>
-              
-              <div 
-                className="marquee-container" 
+
+              <div
+                className="marquee-container"
                 ref={marqueeRef}
                 onMouseEnter={() => handleMarqueeInteraction(true)}
                 onMouseLeave={() => handleMarqueeInteraction(false)}
@@ -527,9 +527,9 @@ const scrollRight = () => {
                   {/* 100 loops of partner logos for seamless infinite scroll */}
                   {createLoopedLogos().map((partner, index) => (
                     <div key={`logo-${index}`} className="partner-logo-wrapper">
-                      <img 
-                        src={partner.url} 
-                        alt={`${partner.name} logo`} 
+                      <img
+                        src={partner.url}
+                        alt={`${partner.name} logo`}
                         className="partner-logo"
                         onError={(e) => {
                           // Fallback to placeholder if image fails to load
@@ -541,8 +541,8 @@ const scrollRight = () => {
                 </div>
               </div>
 
-              <button 
-                className="nav-arrow nav-arrow-right" 
+              <button
+                className="nav-arrow nav-arrow-right"
                 onClick={scrollRight}
                 onTouchStart={scrollRight}
               >
@@ -556,12 +556,12 @@ const scrollRight = () => {
         <section id="about" className="about-section">
           <div className="about-container">
             <h2 className="about-title">About Riego de Dios Consulting</h2>
-            
+
             <div className="about-content">
               <div className="about-item">
                 <div className="about-left">
                   {/* Carousel container */}
-                  <div 
+                  <div
                     className="carousel-container"
                     onTouchStart={onTouchStart}
                     onTouchMove={onTouchMove}
@@ -573,10 +573,10 @@ const scrollRight = () => {
                     style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
                   >
                     {carouselImages.map((image, index) => (
-                      <img 
+                      <img
                         key={index}
-                        src={image.src} 
-                        alt={image.alt} 
+                        src={image.src}
+                        alt={image.alt}
                         className={`about-image carousel-image ${index === currentSlide ? 'active' : ''}`}
                         onError={(e) => {
                           e.target.src = `https://via.placeholder.com/600x300/004AAD/FFFFFF?text=${image.alt}`
@@ -588,7 +588,7 @@ const scrollRight = () => {
                     {/* Carousel navigation */}
                     <div className="carousel-dots">
                       {carouselImages.map((_, index) => (
-                        <span 
+                        <span
                           key={index}
                           className={`dot ${index === currentSlide ? 'active' : ''}`}
                           onClick={() => goToSlide(index)}
@@ -597,7 +597,7 @@ const scrollRight = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="about-right">
                   <div className="about-section-content">
                     <h2 className="about-subtitle">Who We Are</h2>
@@ -605,7 +605,7 @@ const scrollRight = () => {
                       Riego de Dios Consulting specializes in organizational transformation, leadership development, and executive placement. We help businesses enhance performance, develop strong leaders, and navigate change with tailored, data-driven solutions. With a commitment to excellence, we empower organizations to thrive, lead, and stay ahead in a rapidly evolving world.
                     </p>
                   </div>
-                  
+
                   <div className="about-section-content">
                     <h2 className="about-subtitle">Mission</h2>
                     <p className="about-text">
@@ -618,84 +618,84 @@ const scrollRight = () => {
           </div>
 
           <div className="values-item">
-                <h2 className="values-title">Values</h2>
-                <div className="values-grid">
-                  <div className="value-card">
-                    <div className="value-icon">
-                      <img 
-                        src="/agree.png" 
-                        alt="Integrity icon" 
-                        className="value-icon-img"
-                        onError={(e) => {
-                          e.target.src = "https://via.placeholder.com/80x80/FFFFFF/004AAD?text=✓"
-                        }}
-                      />
-                    </div>
-                    <h3 className="value-name">Integrity</h3>
-                    <p className="value-description">
-                      We are trustworthy partners who deliver to their commitments and act with ethics and conscientiousness.
-                    </p>
-                  </div>
+            <h2 className="values-title">Values</h2>
+            <div className="values-grid">
+              <div className="value-card">
+                <div className="value-icon">
+                  <img
+                    src="/agree.png"
+                    alt="Integrity icon"
+                    className="value-icon-img"
+                    onError={(e) => {
+                      e.target.src = "https://via.placeholder.com/80x80/FFFFFF/004AAD?text=✓"
+                    }}
+                  />
+                </div>
+                <h3 className="value-name">Integrity</h3>
+                <p className="value-description">
+                  We are trustworthy partners who deliver to their commitments and act with ethics and conscientiousness.
+                </p>
+              </div>
 
-                  <div className="value-card">
-                    <div className="value-icon">
-                      <img 
-                        src="/inclusivity.png" 
-                        alt="Inclusivity icon" 
-                        className="value-icon-img"
-                        onError={(e) => {
-                          e.target.src = "https://via.placeholder.com/80x80/FFFFFF/004AAD?text=👥"
-                        }}
-                      />
-                    </div>
-                    <h3 className="value-name">Inclusivity</h3>
-                    <p className="value-description">
-                      We believe in creativity and excellence through continuous improvement and staying relevant to evolving needs.
-                    </p>
-                  </div>
+              <div className="value-card">
+                <div className="value-icon">
+                  <img
+                    src="/inclusivity.png"
+                    alt="Inclusivity icon"
+                    className="value-icon-img"
+                    onError={(e) => {
+                      e.target.src = "https://via.placeholder.com/80x80/FFFFFF/004AAD?text=👥"
+                    }}
+                  />
+                </div>
+                <h3 className="value-name">Inclusivity</h3>
+                <p className="value-description">
+                  We believe in creativity and excellence through continuous improvement and staying relevant to evolving needs.
+                </p>
+              </div>
 
-                  <div className="value-card">
-                    <div className="value-icon">
-                      <img 
-                        src="/idea.png" 
-                        alt="Innovation icon" 
-                        className="value-icon-img"
-                        onError={(e) => {
-                          e.target.src = "https://via.placeholder.com/80x80/FFFFFF/💡"
-                        }}
-                      />
-                    </div>
-                    <h3 className="value-name">Innovation</h3>
-                    <p className="value-description">
-                      We believe in creativity and excellence; this is a journey and a life-long pursuit to be better and relevant each day.
-                    </p>
-                  </div>
+              <div className="value-card">
+                <div className="value-icon">
+                  <img
+                    src="/idea.png"
+                    alt="Innovation icon"
+                    className="value-icon-img"
+                    onError={(e) => {
+                      e.target.src = "https://via.placeholder.com/80x80/FFFFFF/💡"
+                    }}
+                  />
+                </div>
+                <h3 className="value-name">Innovation</h3>
+                <p className="value-description">
+                  We believe in creativity and excellence; this is a journey and a life-long pursuit to be better and relevant each day.
+                </p>
+              </div>
+            </div>
+          </div>
+          {/* Meet Eric Section */}
+          <section className="eric-section">
+            <div className="eric-container">
+              <div className="eric-content">
+                <div className="eric-image-wrapper">
+                  <img
+                    src="/portrait2.png"
+                    alt="Eric Riego De Dios"
+                    className="eric-image"
+                    onError={(e) => {
+                      e.target.src = "https://via.placeholder.com/400x500/004AAD/FFFFFF?text=Eric+Riego+De+Dios"
+                    }}
+                  />
+                </div>
+
+                <div className="eric-text">
+                  <h2 className="eric-title">Meet Eric Riego de Dios</h2>
+                  <p className="eric-description">
+                    Eric Riego de Dios has more than 25 years of corporate experience in different industries working with market leaders such as DHL, Citi, Globe, and IBM. He has held different leadership roles including global spans covering 48 countries. He is a multi-awarded HR Leader and a global keynote speaker recognized as one of the 100 Global HR Heroes and Top 100 Filipinos on LinkedIn. He is a certified Strategic HR Business Partner, Certified HR Management Executive, Coach and Mentor, MBTI, and FIRO Facilitator, DDI Facilitator, LEGO Serious Play Facilitator, and a PMAP Fellow in People Management. He received Gold Awards for Culture Creation at the Asia Pacific SSON. He has also been named by Economic Times HR as one of the Top 21 HR Influencers in Southeast Asia.
+                  </p>
                 </div>
               </div>
-              {/* Meet Eric Section */}
-            <section className="eric-section">
-              <div className="eric-container">
-                <div className="eric-content">
-                  <div className="eric-image-wrapper">
-                    <img 
-                      src="/portrait2.png" 
-                      alt="Eric Riego De Dios" 
-                      className="eric-image"
-                      onError={(e) => {
-                        e.target.src = "https://via.placeholder.com/400x500/004AAD/FFFFFF?text=Eric+Riego+De+Dios"
-                      }}
-                    />
-                  </div>
-                  
-                  <div className="eric-text">
-                    <h2 className="eric-title">Meet Eric Riego de Dios</h2>
-                    <p className="eric-description">
-                      Eric Riego de Dios has more than 25 years of corporate experience in different industries working with market leaders such as DHL, Citi, Globe, and IBM. He has held different leadership roles including global spans covering 48 countries. He is a multi-awarded HR Leader and a global keynote speaker recognized as one of the 100 Global HR Heroes and Top 100 Filipinos on LinkedIn. He is a certified Strategic HR Business Partner, Certified HR Management Executive, Coach and Mentor, MBTI, and FIRO Facilitator, DDI Facilitator, LEGO Serious Play Facilitator, and a PMAP Fellow in People Management. He received Gold Awards for Culture Creation at the Asia Pacific SSON. He has also been named by Economic Times HR as one of the Top 21 HR Influencers in Southeast Asia.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </section>
+            </div>
+          </section>
         </section>
 
         {/* Services Section */}
@@ -704,35 +704,35 @@ const scrollRight = () => {
             <div className="services-header">
               <h2 className="services-title">Services of Riego de Dios Consulting</h2>
             </div>
-            
+
             <div className="services-content">
               <div className="services-column">
                 <div className="capability-header">
                   <div className="capability-icon">
-                    <img 
-                        src="/discussion.png" 
-                        alt="Innovation icon" 
-                        className="yes-icon"
-                        onError={(e) => {
-                          e.target.src = "https://via.placeholder.com/80x80/FFFFFF/💡"
-                        }}
-                      />
+                    <img
+                      src="/discussion.png"
+                      alt="Innovation icon"
+                      className="yes-icon"
+                      onError={(e) => {
+                        e.target.src = "https://via.placeholder.com/80x80/FFFFFF/💡"
+                      }}
+                    />
                   </div>
                   <h2 className="capability-title">Consulting Capability</h2>
                 </div>
-                
+
                 <div className="services-list">
                   <div className="service-dropdown">
-                    <button 
+                    <button
                       className="dropdown-header"
                       onClick={() => toggleDropdown('orgStrategy')}
                     >
                       <span>Organizational Strategy and Information</span>
-                      <svg 
+                      <svg
                         className={`dropdown-arrow ${openDropdowns.orgStrategy ? 'open' : ''}`}
                         width="20" height="20" viewBox="0 0 24 24" fill="none"
                       >
-                        <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </button>
                     {openDropdowns.orgStrategy && (
@@ -749,16 +749,16 @@ const scrollRight = () => {
                   </div>
 
                   <div className="service-dropdown">
-                    <button 
+                    <button
                       className="dropdown-header"
                       onClick={() => toggleDropdown('hrSystems')}
                     >
                       <span>HR Systems and Talent Strategy</span>
-                      <svg 
+                      <svg
                         className={`dropdown-arrow ${openDropdowns.hrSystems ? 'open' : ''}`}
                         width="20" height="20" viewBox="0 0 24 24" fill="none"
                       >
-                        <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </button>
                     {openDropdowns.hrSystems && (
@@ -774,16 +774,16 @@ const scrollRight = () => {
                   </div>
 
                   <div className="service-dropdown">
-                    <button 
+                    <button
                       className="dropdown-header"
                       onClick={() => toggleDropdown('culture')}
                     >
                       <span>Culture, Engagement and Inclusion</span>
-                      <svg 
+                      <svg
                         className={`dropdown-arrow ${openDropdowns.culture ? 'open' : ''}`}
                         width="20" height="20" viewBox="0 0 24 24" fill="none"
                       >
-                        <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </button>
                     {openDropdowns.culture && (
@@ -799,16 +799,16 @@ const scrollRight = () => {
                   </div>
 
                   <div className="service-dropdown">
-                    <button 
+                    <button
                       className="dropdown-header"
                       onClick={() => toggleDropdown('insights')}
                     >
                       <span>People Insights and Analytics</span>
-                      <svg 
+                      <svg
                         className={`dropdown-arrow ${openDropdowns.insights ? 'open' : ''}`}
                         width="20" height="20" viewBox="0 0 24 24" fill="none"
                       >
-                        <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </button>
                     {openDropdowns.insights && (
@@ -823,16 +823,16 @@ const scrollRight = () => {
                   </div>
 
                   <div className="service-dropdown">
-                    <button 
+                    <button
                       className="dropdown-header"
                       onClick={() => toggleDropdown('leadership')}
                     >
                       <span>Leadership and Advisory</span>
-                      <svg 
+                      <svg
                         className={`dropdown-arrow ${openDropdowns.leadership ? 'open' : ''}`}
                         width="20" height="20" viewBox="0 0 24 24" fill="none"
                       >
-                        <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </button>
                     {openDropdowns.leadership && (
@@ -850,30 +850,30 @@ const scrollRight = () => {
               <div className="services-column">
                 <div className="capability-header">
                   <div className="capability-icon">
-                    <img 
-                        src="/training.png" 
-                        alt="Innovation icon" 
-                        className="yes-icon"
-                        onError={(e) => {
-                          e.target.src = "https://via.placeholder.com/80x80/FFFFFF/💡"
-                        }}
-                      />
+                    <img
+                      src="/training.png"
+                      alt="Innovation icon"
+                      className="yes-icon"
+                      onError={(e) => {
+                        e.target.src = "https://via.placeholder.com/80x80/FFFFFF/💡"
+                      }}
+                    />
                   </div>
                   <h2 className="capability-title-d">Training Capability</h2>
                 </div>
-                
+
                 <div className="services-list">
                   <div className="service-dropdown">
-                    <button 
+                    <button
                       className="dropdown-header"
                       onClick={() => toggleDropdown('communication')}
                     >
                       <span>Communication and Professional Presence</span>
-                      <svg 
+                      <svg
                         className={`dropdown-arrow ${openDropdowns.communication ? 'open' : ''}`}
                         width="20" height="20" viewBox="0 0 24 24" fill="none"
                       >
-                        <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </button>
                     {openDropdowns.communication && (
@@ -889,16 +889,16 @@ const scrollRight = () => {
                   </div>
 
                   <div className="service-dropdown">
-                    <button 
+                    <button
                       className="dropdown-header"
                       onClick={() => toggleDropdown('criticalThinking')}
                     >
                       <span>Critical Thinking and Strategic Decision-Making</span>
-                      <svg 
+                      <svg
                         className={`dropdown-arrow ${openDropdowns.criticalThinking ? 'open' : ''}`}
                         width="20" height="20" viewBox="0 0 24 24" fill="none"
                       >
-                        <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </button>
                     {openDropdowns.criticalThinking && (
@@ -913,16 +913,16 @@ const scrollRight = () => {
                   </div>
 
                   <div className="service-dropdown">
-                    <button 
+                    <button
                       className="dropdown-header"
                       onClick={() => toggleDropdown('leadershipMgmt')}
                     >
                       <span>Leadership and People Management</span>
-                      <svg 
+                      <svg
                         className={`dropdown-arrow ${openDropdowns.leadershipMgmt ? 'open' : ''}`}
                         width="20" height="20" viewBox="0 0 24 24" fill="none"
                       >
-                        <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </button>
                     {openDropdowns.leadershipMgmt && (
@@ -938,16 +938,16 @@ const scrollRight = () => {
                   </div>
 
                   <div className="service-dropdown">
-                    <button 
+                    <button
                       className="dropdown-header"
                       onClick={() => toggleDropdown('performance')}
                     >
                       <span>Performance and Workforce Optimization</span>
-                      <svg 
+                      <svg
                         className={`dropdown-arrow ${openDropdowns.performance ? 'open' : ''}`}
                         width="20" height="20" viewBox="0 0 24 24" fill="none"
                       >
-                        <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </button>
                     {openDropdowns.performance && (
@@ -962,16 +962,16 @@ const scrollRight = () => {
                   </div>
 
                   <div className="service-dropdown">
-                    <button 
+                    <button
                       className="dropdown-header"
                       onClick={() => toggleDropdown('cultureDiversity')}
                     >
                       <span>Culture, Diversity and Adaptability</span>
-                      <svg 
+                      <svg
                         className={`dropdown-arrow ${openDropdowns.cultureDiversity ? 'open' : ''}`}
                         width="20" height="20" viewBox="0 0 24 24" fill="none"
                       >
-                        <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </button>
                     {openDropdowns.cultureDiversity && (
@@ -986,16 +986,16 @@ const scrollRight = () => {
                   </div>
 
                   <div className="service-dropdown">
-                    <button 
+                    <button
                       className="dropdown-header"
                       onClick={() => toggleDropdown('digital')}
                     >
                       <span>Digital and Analytical Competence</span>
-                      <svg 
+                      <svg
                         className={`dropdown-arrow ${openDropdowns.digital ? 'open' : ''}`}
                         width="20" height="20" viewBox="0 0 24 24" fill="none"
                       >
-                        <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </button>
                     {openDropdowns.digital && (
@@ -1010,16 +1010,16 @@ const scrollRight = () => {
                   </div>
 
                   <div className="service-dropdown">
-                    <button 
+                    <button
                       className="dropdown-header"
                       onClick={() => toggleDropdown('personal')}
                     >
                       <span>Personal Effectiveness and Productivity</span>
-                      <svg 
+                      <svg
                         className={`dropdown-arrow ${openDropdowns.personal ? 'open' : ''}`}
                         width="20" height="20" viewBox="0 0 24 24" fill="none"
                       >
-                        <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </button>
                     {openDropdowns.personal && (
@@ -1037,11 +1037,88 @@ const scrollRight = () => {
           </div>
         </section>
 
+        {/* Testimonials Section */}
+        <section id="testimonials" className="testimonials-section">
+          <div className="testimonials-container">
+            <h2 className="testimonials-title">What Our Clients Say</h2>
+
+            <div className="testimonials-grid">
+              <div className="testimonial-card">
+                <div className="testimonial-content">
+                  <p className="testimonial-text">
+                    The ability to transform a critical topic like handling controversial questions into such a fun and engaging learning experience is remarkable. Our team left with practical skills they can immediately apply.
+                  </p>
+                </div>
+                <div className="testimonial-author">
+                  <div className="author-avatar">
+                    <span className="avatar-initials">AA</span>
+                  </div>
+                  <div className="author-info">
+                    <h4 className="author-name">Aileen Afunggol</h4>
+                    <p className="author-title">Department of Budget and Management</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="testimonial-card">
+                <div className="testimonial-content">
+                  <p className="testimonial-text">
+                    [Your] session on navigating difficult conversations was a standout at our summit. The insights provided were not only profound but also immediately applicable for our leadership team. We look forward to our next collaboration.
+                  </p>
+                </div>
+                <div className="testimonial-author">
+                  <div className="author-avatar">
+                    <span className="avatar-initials">BP</span>
+                  </div>
+                  <div className="author-info">
+                    <h4 className="author-name">Brad Penman</h4>
+                    <p className="author-title">Executive Vice President, DCX</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="testimonial-card">
+                <div className="testimonial-content">
+                  <p className="testimonial-text">
+                    Employee discipline is a complex and sensitive subject, yet [your] delivery made it incredibly approachable and relevant. The session was smooth, engaging, and provided our leadership with the clarity and confidence needed to handle these situations effectively.
+                  </p>
+                </div>
+                <div className="testimonial-author">
+                  <div className="author-avatar">
+                    <span className="avatar-initials">GR</span>
+                  </div>
+                  <div className="author-info">
+                    <h4 className="author-name">Glennies Racuya</h4>
+                    <p className="author-title">Chief Operating Officer, ABS</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="testimonial-card">
+                <div className="testimonial-content">
+                  <p className="testimonial-text">
+                    This was one of the most effective training sessions we've experienced in data analytics. The competitive and hands-on approach created a truly immersive environment for learning data analysis, leading to a much deeper and more practical understanding for our entire team.
+                  </p>
+                </div>
+                <div className="testimonial-author">
+                  <div className="author-avatar">
+                    <span className="avatar-initials">GM</span>
+                  </div>
+                  <div className="author-info">
+                    <h4 className="author-name">Analysts Team</h4>
+                    <p className="author-title">General Motors Shared Services</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Contact Section */}
         <section id="connect" className="contact-section">
           <div className="contact-container">
             <h2 className="contact-title">Let us empower leaders and strengthen organizations!</h2>
-            
+
             <form className="contact-form" onSubmit={handleFormSubmit}>
               <div className="form-group">
                 <label htmlFor="fullName" className="form-label">Full Name</label>
@@ -1098,7 +1175,7 @@ const scrollRight = () => {
                   className="form-textarea"
                 />
               </div>
-              
+
 
               <div className="form-group">
                 <label htmlFor="contactNumber" className="form-label">Contact Number</label>
@@ -1153,98 +1230,99 @@ const scrollRight = () => {
           </div>
 
           <section className="footer-section">
-          <div className="footer-container">
-            <div className="footer-content">
-              <div className="footer-left">
-                <div className="footer-logo">
-                  <img src="/logo-blue.png" className="footer-logo-img" alt="Riego de Dios Consulting Logo" />
+            <div className="footer-container">
+              <div className="footer-content">
+                <div className="footer-left">
+                  <div className="footer-logo">
+                    <img src="/logo-blue.png" className="footer-logo-img" alt="Riego de Dios Consulting Logo" />
+                  </div>
+                </div>
+
+                <div className="footer-right">
+                  <h3 className="footer-title">Reach out to us at:</h3>
+
+                  <div className="contact-info">
+                    <div className="contact-row">
+                      <div className="contact-item">
+                        <a
+                          href="mailto:eric@riegodedios.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <MdOutlineEmail className="contact-icon" />
+                          <span className="contact-des">eric@riegodedios.com</span>
+                        </a>
+                      </div>
+
+                      <div className="contact-item">
+                        <a
+                          href="https://www.youtube.com/@RiegodeDiosConsulting"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FaYoutube className="contact-icon" />
+                          <span className="contact-des">@RiegoDeDiosConsulting</span>
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="contact-row">
+                      <div className="contact-item">
+                        <a
+                          href="viber://chat?number=%2B639178790029"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FaViber className="contact-icon" />
+                          <span className="contact-des">+639178790029</span>
+                        </a>
+                      </div>
+
+                      <div className="contact-item">
+                        <a
+                          href="https://www.tiktok.com/@ericriegodedios"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FaTiktok className="contact-icon" />
+                          <span className="contact-des">Eric Riego de Dios</span>
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="contact-row">
+                      <div className="contact-item">
+                        <a
+                          href="https://www.linkedin.com/company/riego-de-dios-consulting/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FaLinkedin className="contact-icon" />
+                          <span className="contact-des">Riego de Dios Consulting</span>
+                        </a>
+                      </div>
+
+                      <div className="contact-item">
+                        <a
+                          href="https://www.facebook.com/RiegodeDiosConsulting/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FaFacebook className="contact-icon" />
+                          <span className="contact-des">Riego de Dios Consulting</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              
-              <div className="footer-right">
-                <h3 className="footer-title">Reach out to us at:</h3>
-                
-                <div className="contact-info">
-        <div className="contact-row">
-            <div className="contact-item">
-                <a 
-                    href="mailto:eric@riegodedios.com" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                >
-                    <MdOutlineEmail className="contact-icon"/>
-                    <span className="contact-des">eric@riegodedios.com</span>
-                </a>
-            </div>
-            
-            <div className="contact-item">
-                <a 
-                    href="https://www.youtube.com/@RiegodeDiosConsulting" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                >
-                    <FaYoutube className="contact-icon"/>
-                    <span className="contact-des">@RiegoDeDiosConsulting</span>
-                </a>
-            </div>
-        </div>
-        
-        <div className="contact-row">
-            <div className="contact-item">
-                <a 
-                    href="viber://chat?number=%2B639178790029" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                >
-                    <FaViber className="contact-icon"/>
-                    <span className="contact-des">+639178790029</span>
-                </a>
-            </div>
-            
-            <div className="contact-item">
-                <a 
-                    href="https://www.tiktok.com/@ericriegodedios" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                >
-                    <FaTiktok className="contact-icon"/>
-                    <span className="contact-des">Eric Riego de Dios</span>
-                </a>
-            </div>
-        </div>
-        
-        <div className="contact-row">
-            <div className="contact-item">
-                <a 
-                    href="https://www.linkedin.com/company/riego-de-dios-consulting/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                >
-                    <FaLinkedin className="contact-icon"/>
-                    <span className="contact-des">Riego de Dios Consulting</span>
-                </a>
-            </div>
-            
-            <div className="contact-item">
-                <a 
-                    href="https://www.facebook.com/RiegodeDiosConsulting/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                >
-                    <FaFacebook className="contact-icon"/>
-                    <span className="contact-des">Riego de Dios Consulting</span>
-                </a>
-            </div>
-        </div>
-    </div>
+
+              <div className="footer-bottom">
+                <p className="copyright">© 2025 Riego de Dios Consulting. All rights reserved</p>
+                <p className="copyright">Developed by: Rimuel Cañada</p>
               </div>
             </div>
-            
-            <div className="footer-bottom">
-              <p className="copyright">© 2025 Riego de Dios Consulting. All rights reserved</p>
-            </div>
-          </div>
-        </section>
+          </section>
 
         </section>
 

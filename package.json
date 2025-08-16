@@ -9,9 +9,9 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
-
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "concurrent": "^0.3.2",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
